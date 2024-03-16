@@ -1,0 +1,15 @@
+extends ../templates/layout.pug
+
+block header
+    h1 #{pageTitle}
+
+block content
+    if (error)
+        p #{error}
+    video(src=video.video, controls)
+    form(method="POST", enctype="multipart/form-data")
+        label(for="uploadVideo") Video
+        input(type="file", id="uploadVideo" name="video", accept="video/*")
+        input(type="text", name="title", placeHolder="Title", value=`${video.title}`, required)
+        input(type="text", name="description", placeHolder="Description", value=`${video.description}`, required)
+        input(type="submit", value="Edit")

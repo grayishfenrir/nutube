@@ -1,0 +1,29 @@
+header
+    //- h1=pageTitle
+    //- if (loggedIn)
+    //-     h3 Welcome #{loggedInUser.name}!
+    a(href="/").header__logo
+        i.fab.fa-youtube
+    nav
+        ul
+            li
+                a(href="/search")
+                    i.fas.fa-magnifying-glass
+            if (loggedIn)
+                li
+                    a(href="/users/edit-profile") Edit Profile
+                li
+                    a(href="/logout") Log Out
+                li
+                    a(href="/videos/upload") Upload
+                li
+                    a(href="/users/my-profile") 
+                        if loggedInUser.avatar
+                            img(src=loggedInUser.avatar).header__avatar
+                        else
+                            sapn.header__dummy-avatar 🙂
+            else
+                li
+                    a(href="/login") Log In
+                li
+                    a(href="/join").header__btn Join

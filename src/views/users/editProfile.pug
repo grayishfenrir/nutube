@@ -1,0 +1,19 @@
+extends ../templates/layout.pug
+
+block content
+    if (error)
+        p #{error}
+    if (loggedInUser.avatar)
+        img(src=`${loggedInUser.avatar}`, width="200px", height="200px").avatar
+    form(method="POST", enctype="multipart/form-data").edit-profile__form
+        label(for="uploadAvatar") Avatar
+        input(type="file", id="uploadAvatar" name="avatar", accept="image/*")
+        if (loggedInUser.socialOnly)
+            input(type="text", name="email", placeHolder="Email", value=`${loggedInUser.email}`, readOnly)
+        else 
+            input(type="text", name="email", placeHolder="Email", value=`${loggedInUser.email}` ,required)
+        input(type="text", name="name", placeHolder="Name", value=`${loggedInUser.name}` ,required)
+        input(type="submit", value="Edit")
+        if (!loggedInUser.socialOnly) 
+            div.edit-profile__password
+                a(href="/users/edit-password") Edit Password

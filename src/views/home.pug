@@ -1,0 +1,9 @@
+extends templates/layout.pug
+include mixins/showVideo.pug
+
+block content
+    div.video-grid
+        each video in videos
+            +showVideo(video)
+        else
+            span.empty__message No videos. Upload First Video!

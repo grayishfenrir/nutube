@@ -1,0 +1,56 @@
+extends ../templates/layout.pug
+
+block content
+    // data attribute
+    div#videoContainer(data-id=video._id)
+        video(src=video.video)
+        div#videoControls.videoControls
+            div.videoControls__play
+                span#play.videoControls__playBtn
+                    i.fas.fa-play
+                div.videoControls__time
+                    span#currentTime 00:00
+                    span  / 
+                    span#totalTime 00:00
+            input(type="range", min="0", step="1", value="0")#timeline.videoControls__timeline
+            div.videoControls__volume
+                input(type="range", min="0", max="1", step="0.1", value="0.5")#volume
+                span#mute
+                    i.fas.fa-volume-up
+            div
+                span#fullScreen
+                    i.fas.fa-expand
+        //- p=video.title
+        //- div
+        //-     p=video.description
+        //-     small Created By 
+        //-         a(href=`/users/${video.owner.id}`) #{video.owner.name}
+        //-     br
+        //-     small=video.createdAt
+        //- div
+        //-     small last upadted: #{video.updatedAt}
+        div
+            if (video.meta.views < 1)
+                span #{video.meta.views} View&nbsp;
+            else 
+                span #{video.meta.views} Views&nbsp;
+        //-     span , #{video.meta.rating} / 5.0
+        //- if String(video.owner.id) === String(loggedInUser._id)
+        //-     a(href=`/videos/${video.id}/edit`) Edit Video &rarr;
+        //-     br 
+        //-     a(href=`/videos/${video.id}/delete`) Delete Video &rarr;
+    if loggedIn
+        div.video__add-comments
+            form.video__comment-form#commentForm
+                textarea(cols="30", rows="10", placeholder="Write a nice comment..")
+                button Add Comment
+    div.video__comments
+        ul
+            each comment in video.comments.reverse()
+                li.video__comment
+                    i.fas.fa-comment
+                    span  #{comment.text}
+
+block scripts
+    script(src="/assets/js/videoPlayer.js")
+    script(src="/assets/js/commentSection.js")

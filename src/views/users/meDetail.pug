@@ -1,0 +1,17 @@
+extends ../templates/layout.pug
+include ../mixins/showVideo.pug
+
+block content
+    div.profile__data
+        if (loggedInUser.avatar)
+            img(src=`${loggedInUser.avatar}`, width="200px", height="200px").avatar
+        h3 Email: #{loggedInUser.email}
+        h3 Name: #{loggedInUser.name}
+    button
+        a(href="/users/edit-profile") Edit Profile
+    h2 My Videos!
+    div.video-grid
+        each video in user.videos
+            +showVideo(video)
+        else
+            span.empty__message No videos. Upload First Video!

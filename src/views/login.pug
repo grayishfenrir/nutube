@@ -1,0 +1,14 @@
+extends templates/layout.pug
+
+block content
+    if (error)
+        p #{error}
+    form(method="POST")
+        input(type="text", name="email", placeHolder="Email", value=`${email ? email : ""}` ,required)
+        input(type="password", name="password", placeHolder="Password", required)
+        input(type="submit", value="Login")
+        br
+        include partials/social-login.pug
+    div.auth-switch
+        span Don't have an account? 
+        a(href="/join") Create one now &rarr;

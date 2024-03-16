@@ -1,0 +1,15 @@
+extends ../templates/layout.pug
+include ../mixins/showVideo.pug
+
+block content
+    div.profile__data
+        if (user.avatar)
+            img(src=`${user.avatar}`, width="200px", height="200px").avatar
+        h3 Email: #{user.email}
+        h3 Name: #{user.name}
+        h2 #{user.name}'s Videos!
+        div.video-grid
+            each video in user.videos
+                +showVideo(video)
+            else
+                span.empty__message No videos.

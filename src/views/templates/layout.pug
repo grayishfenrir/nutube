@@ -1,0 +1,14 @@
+doctype html 
+include ../mixins/message.pug
+
+html(lang="ko")
+    include ../partials/head
+    include ../partials/header
+    body
+        if messages.error
+            +message("error", messages.error)
+        main
+            block content
+        include ../partials/footer.pug
+    script(src="/assets/js/main.js")
+    block scripts

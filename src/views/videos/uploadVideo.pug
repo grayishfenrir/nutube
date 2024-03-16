@@ -1,0 +1,20 @@
+extends ../templates/layout.pug
+
+block content
+    div.upload__container
+        div.upload__video
+            video#preview
+            button#actionBtn.social__btn Start Recording
+        if (error)
+            p #{error}
+        form(method="POST", enctype="multipart/form-data")
+            label(for="uploadVideo") Video
+            input(type="file", id="uploadVideo", name="video", accept="vedio/*", required)
+            label(for="uploadThumbnail") Thumbnail File
+            input(type="file", id="uploadThumbnail", name="thumbnail", accept="image/*", required)
+            input(type="text", name="title", placeHolder="Title", value=`${title ? title : ""}` required)
+            input(type="text", name="description", placeHolder="Description", value=`${description ? description : ""}` ,required)
+            input(type="submit", value="Upload")
+
+block scripts
+    script(src="/assets/js/recorder.js")

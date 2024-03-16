@@ -1,0 +1,59 @@
+{
+  "scripts": {
+    "start": "node build/init.js",
+    "build": "npm run build:server && npm run build:assets",
+    "build:server": "babel src -d build --ignore src/client",
+    "build:assets": "webpack --config webpack.config.cjs --mode=production",
+    "dev:server": "nodemon --delay 500ms",
+    "dev:assets": "webpack --mode=development -w"
+  },
+  "name": "ytube-clone",
+  "version": "1.0.0",
+  "description": "My first nodejs prj.",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grayishfenrir/ytube-clone.git"
+  },
+  "author": "Me",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grayishfenrir/ytube-clone/issues"
+  },
+  "homepage": "https://github.com/grayishfenrir/ytube-clone#readme",
+  "type": "module",
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.10",
+    "@ffmpeg/util": "^0.12.1",
+    "axios": "0.19.0",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "connect-mongo": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "express": "4.17.1",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.0",
+    "mongoose": "^5.13.22",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2",
+    "pug": "^2.0.4",
+    "regenerator-runtime": "^0.14.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.24.0",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.10.0",
+    "mini-css-extract-plugin": "^2.8.1",
+    "nodemon": "^3.0.3",
+    "sass": "^1.71.1",
+    "sass-loader": "^14.1.1",
+    "style-loader": "^3.3.4",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  }
+}
