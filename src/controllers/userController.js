@@ -73,11 +73,15 @@ export const logout = async (req, res) => {
     const { id: sessionId,
         loggedInUser: { email } } = req.session;
 
+    console.log(req.session);
+
 
     try {
         // TODO: Check all logout.
         if (email) {
+            console.log("fail?");
             await Session.deleteMany({ session: new RegExp(email) });
+            console.log("fail");
         } else {
             req.session.destroy();
         }

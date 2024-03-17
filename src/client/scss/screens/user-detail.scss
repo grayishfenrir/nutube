@@ -27,5 +27,12 @@
         background-color: white;
         color: black;
         margin-bottom: 10px;
+        .video__comment-btn {
+            border: none;
+            font-size: 1rem;
+            background-color: rgba(0, 0, 0, 0);
+            text-align: center;
+            cursor: pointer;
+        }
     }
 }

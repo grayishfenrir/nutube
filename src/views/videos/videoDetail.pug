@@ -1,4 +1,5 @@
 extends ../templates/layout.pug
+include ../mixins/showComment.pug
 
 block content
     // data attribute
@@ -47,9 +48,10 @@ block content
     div.video__comments
         ul
             each comment in video.comments.reverse()
-                li.video__comment
-                    i.fas.fa-comment
-                    span  #{comment.text}
+                if (loggedInUser)
+                    +showComment(comment, String(loggedInUser._id) === String(comment.owner._id))
+                else 
+                    +showComment(comment, false)
 
 block scripts
     script(src="/assets/js/videoPlayer.js")

@@ -1,0 +1,7 @@
+mixin showComment(comment, isOwner)
+    li.video__comment
+        i.fas.fa-comment
+        span  #{comment.text}
+        if isOwner
+            button.video__comment-btn(id = comment._id)
+                i.fas.fa-eraser

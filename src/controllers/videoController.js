@@ -126,5 +126,47 @@ export const createComment = async (req, res) => {
     video.comments.push(comment);
     await video.save();
 
-    return res.sendStatus(201).json({ newCommentId: comment.id });
+    return res.status(201).json({ newCommentId: comment.id });
+};
+
+export const deleteComment = async (req, res) => {
+    const {
+        params: { id },
+        session: {
+            loggedInUser:
+            {
+                _id: userId,
+            },
+        },
+    } = req;
+
+    const comment = await Comment.findById(id);
+    if (!comment) {
+        return res.sendStatus(404);
+    }
+
+    console.log(comment.id);
+    const video = await Video.findById(comment.video);
+    if (!video) {
+        return res.sendStatus(404);
+    }
+
+    if (comment.owner.toString() !== userId) {
+        req.flash("error", "Not Authorize.")
+        return res.sendStatus(400);
+    }
+
+    const newUser = await User.findById(userId);
+
+    const user = await User.findByIdAndUpdate(userId, {
+        $pull: { comments: comment.id }
+    },
+        { new: true }
+    );
+
+    video.comments.pull(comment);
+
+    await video.save();
+
+    return res.sendStatus(200);
 };
