@@ -1,8 +1,5 @@
 extends ../templates/layout.pug
 
-block header
-    h1 #{pageTitle}
-
 block content
     if (error)
         p #{error}
@@ -10,6 +7,8 @@ block content
     form(method="POST", enctype="multipart/form-data")
         label(for="uploadVideo") Video
         input(type="file", id="uploadVideo" name="video", accept="video/*")
+        label(for="uploadThumbnail") Thumbnail File
+        input(type="file", id="uploadThumbnail", name="thumbnail", accept="image/*")
         input(type="text", name="title", placeHolder="Title", value=`${video.title}`, required)
         input(type="text", name="description", placeHolder="Description", value=`${video.description}`, required)
         input(type="submit", value="Edit")

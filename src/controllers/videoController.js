@@ -13,6 +13,8 @@ export const postUploadVideo = async (req, res) => {
         return res.status(400).render("videos/uploadVideo", { pageTitle: "Upload Video", error: "Please fill all components", title, description })
     }
 
+    // TODO: make thumbnail automatically
+
     const video = await Video.create({
         title,
         description,
@@ -65,8 +67,8 @@ export const postEditVideo = async (req, res) => {
 
     existingVideo.title = title;
     existingVideo.description = description;
-    existingVideo.video = videoFile[0] ? videoFile[0].location : existingVideo.video;
-    existingVideo.thumbnail = thumbnailFile[0] ? `/${thumbnailFile[0].path}` : existingVideo.thumbnail;
+    existingVideo.video = videoFile ? videoFile[0].location : existingVideo.video;
+    existingVideo.thumbnail = thumbnailFile ? thumbnailFile[0].location : existingVideo.thumbnail;
     existingVideo.updatedAt = Date.now()
 
     await existingVideo.save();

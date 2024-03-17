@@ -20,25 +20,25 @@ block content
             div
                 span#fullScreen
                     i.fas.fa-expand
-        //- p=video.title
-        //- div
-        //-     p=video.description
-        //-     small Created By 
-        //-         a(href=`/users/${video.owner.id}`) #{video.owner.name}
-        //-     br
-        //-     small=video.createdAt
-        //- div
-        //-     small last upadted: #{video.updatedAt}
+        p=video.title
+        div
+            p=video.description
+            small Created By 
+                a(href=`/users/${video.owner.id}`) #{video.owner.name}
+            br
+            small=video.createdAt
+        div
+            small last upadted: #{video.updatedAt}
         div
             if (video.meta.views < 1)
                 span #{video.meta.views} View&nbsp;
             else 
                 span #{video.meta.views} Views&nbsp;
-        //-     span , #{video.meta.rating} / 5.0
-        //- if String(video.owner.id) === String(loggedInUser._id)
-        //-     a(href=`/videos/${video.id}/edit`) Edit Video &rarr;
-        //-     br 
-        //-     a(href=`/videos/${video.id}/delete`) Delete Video &rarr;
+            span , #{video.meta.rating} / 5.0
+        if String(video.owner.id) === String(loggedInUser._id)
+            a(href=`/videos/${video.id}/edit`) Edit Video &rarr;
+            br 
+            a(href=`/videos/${video.id}/delete`) Delete Video &rarr;
     if loggedIn
         div.video__add-comments
             form.video__comment-form#commentForm

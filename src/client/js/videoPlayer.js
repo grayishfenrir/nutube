@@ -58,7 +58,7 @@ volumeRange.addEventListener("input", (e) => {
 });
 
 video.addEventListener("loadedmetadata", (e) => {
-    console.log("load data");
+    videoControls.style.top = `${video.offsetHeight - 50}px`;
     const totalSeconds = Math.floor(video.duration);
     totalTime.innerText = formatTime(totalSeconds);
     timelineRange.max = totalSeconds;
@@ -113,4 +113,8 @@ video.addEventListener("ended", async () => {
     fetch(`/api/videos/${id}/views`, {
         method: "POST",
     });
+});
+
+window.addEventListener("resize", (e) => {
+    videoControls.style.top = `${video.offsetHeight - 50}px`;
 });
