@@ -12,15 +12,16 @@ const addCommentToHTML = (text, id) => {
     const icon = document.createElement("i");
     icon.className = "fas fa-comment";
     const deleteBtn = document.createElement("button");
-    deleteBtn.class = "video__comment-btn";
-    deleteBtn.addEventListener("clikc")
+    deleteBtn.className = "video__comment-btn";
+    deleteBtn.id = id;
+    deleteBtn.addEventListener("click", deleteComment)
     const deleteIcon = document.createElement("i");
     deleteIcon.className = "fas fa-eraser";
 
     newComment.appendChild(icon);
     newComment.appendChild(span);
-    span.innerText = ` ${text} `;
-    span.appendChild(deleteBtn);
+    span.innerText = ` ${text}`;
+    newComment.appendChild(deleteBtn);
     deleteBtn.appendChild(deleteIcon);
     videoComments.prepend(newComment);
 };
@@ -76,7 +77,6 @@ if (form) {
                 text,
             }),
         });
-        // console.log(res);
 
         if (res.status === 201) {
             const { newCommentId } = await res.json();
