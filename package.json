@@ -7,24 +7,25 @@
     "dev:server": "nodemon --delay 500ms",
     "dev:assets": "webpack --mode=development -w"
   },
-  "name": "ytube-clone",
+  "name": "nutube",
   "version": "1.0.0",
   "description": "My first nodejs prj.",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/grayishfenrir/ytube-clone.git"
+    "url": "git+https://github.com/grayishfenrir/nutube.git"
   },
   "author": "Me",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/grayishfenrir/ytube-clone/issues"
+    "url": "https://github.com/grayishfenrir/nutube/issues"
   },
-  "homepage": "https://github.com/grayishfenrir/ytube-clone#readme",
+  "homepage": "https://github.com/grayishfenrir/nutube#readme",
   "type": "module",
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.12.10",
     "@ffmpeg/util": "^0.12.1",
+    "aws-sdk": "^2.1579.0",
     "axios": "0.19.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
@@ -36,6 +37,7 @@
     "mongoose": "^5.13.22",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "multer-s3": "^3.0.1",
     "node-fetch": "^3.3.2",
     "pug": "^2.0.4",
     "regenerator-runtime": "^0.14.1"
