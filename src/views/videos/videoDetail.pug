@@ -3,8 +3,7 @@ include ../mixins/showComment.pug
 
 block content
     // data attribute
-    div#videoContainer(data-id=video._id)
-        video(src=video.video)
+    div#videoContainer(data-id=video._id, data-url=video.video)
         div#videoControls.videoControls
             div.videoControls__play
                 span#play.videoControls__playBtn

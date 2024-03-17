@@ -1,4 +1,3 @@
-const video = document.querySelector("video");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
 const playBtn = document.getElementById("play");
@@ -11,6 +10,11 @@ const volumeRange = document.getElementById("volume");
 const timelineRange = document.getElementById("timeline");
 const fullScreenBtn = document.getElementById("fullScreen");
 const fullScreenIcon = fullScreenBtn.querySelector("i");
+
+const video = document.createElement("video");
+const { url } = videoContainer.dataset;
+video.src = url;
+videoContainer.prepend(video);
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
@@ -53,7 +57,8 @@ volumeRange.addEventListener("input", (e) => {
     muteBtnIcon.classList = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
 });
 
-video.addEventListener("loadeddata", (e) => {
+video.addEventListener("loadedmetadata", (e) => {
+    console.log("load data");
     const totalSeconds = Math.floor(video.duration);
     totalTime.innerText = formatTime(totalSeconds);
     timelineRange.max = totalSeconds;
