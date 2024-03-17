@@ -8,6 +8,6 @@ import './models/User.js';
 import './models/Session.js';
 import './models/Comment.js';
 
-const PORT = 4000;
+const PORT = process.env.SERVER_PORT
 
 app.listen(PORT, () => console.log(`start litening ${PORT}`));
