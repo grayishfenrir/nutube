@@ -10,25 +10,25 @@ export const isProd = process.env.NODE_ENV === "prod";
 
 const s3ProfileStorage = multerS3({
     s3: s3,
-    bucket: "nutube-files/profiles",
+    bucket: "nutube-files",
     acl: "public-read",
     contentType: multerS3.AUTO_CONTENT_TYPE,
-    key: function (request, file, ab_callback) {
+    key: function (request, file, cb) {
         const newFileName = Date.now() + "-" + file.originalname;
         const fullPath = "profiles/" + newFileName;
-        ab_callback(null, fullPath);
+        cb(null, fullPath);
     },
 });
 
 const s3VideoStorage = multerS3({
     s3: s3,
-    bucket: "nutube-files/videos",
+    bucket: "nutube-files",
     acl: "public-read",
     contentType: multerS3.AUTO_CONTENT_TYPE,
-    key: function (request, file, ab_callback) {
+    key: function (request, file, cb) {
         const newFileName = Date.now() + "-" + file.originalname;
         const fullPath = "videos/" + newFileName;
-        ab_callback(null, fullPath);
+        cb(null, fullPath);
     },
 });
 
