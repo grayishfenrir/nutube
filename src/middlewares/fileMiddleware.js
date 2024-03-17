@@ -1,18 +1,18 @@
 import multer from 'multer';
 import multerS3 from 'multer-s3';
-import aws from 'aws-sdk';
+import { S3Client } from '@aws-sdk/client-s3';
 
-const s3 = new aws.S3({
-    credentials: {
-        accessKeyId: process.env.AWS_S3_ACCESS_KEY,
-        secretAccessKey: process.env.AWS_SECRET
-    }
+
+
+const s3 = new S3Client({
+    region: "ap-northeast-2",
 });
 
 const multerS3Storage = multerS3({
     s3: s3,
-    bucket: 'nutube-files',
-})
+    bucket: "nutube-files",
+    acl: "public-read",
+});
 
 
 export const uploadProfile = multer({ dest: 'uploads/userProfiles', limits: { fileSize: 3000000 }, storage: multerS3Storage });

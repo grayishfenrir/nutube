@@ -23,6 +23,7 @@
   "homepage": "https://github.com/grayishfenrir/nutube#readme",
   "type": "module",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.535.0",
     "@ffmpeg/ffmpeg": "^0.12.10",
     "@ffmpeg/util": "^0.12.1",
     "aws-sdk": "^2.1579.0",

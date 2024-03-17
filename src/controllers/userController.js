@@ -199,7 +199,7 @@ export const postEditProfile = async (req, res) => {
         ...req.session.loggedInUser,
         email,
         name,
-        avatar: file ? `/${file.path}` : avatar
+        avatar: file ? file.location : avatar
     }, {
         new: true,
     });

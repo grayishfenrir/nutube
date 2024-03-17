@@ -16,8 +16,8 @@ export const postUploadVideo = async (req, res) => {
     const video = await Video.create({
         title,
         description,
-        video: `/${videoFile[0].path}`,
-        thumbnail: `/${thumbnailFile[0].path}`,
+        video: videoFile[0].location,
+        thumbnail: thumbnailFile[0].location,
         owner: req.session.loggedInUser._id,
     })
 
@@ -65,7 +65,7 @@ export const postEditVideo = async (req, res) => {
 
     existingVideo.title = title;
     existingVideo.description = description;
-    existingVideo.video = videoFile[0] ? `/${videoFile[0].path}` : existingVideo.video;
+    existingVideo.video = videoFile[0] ? videoFile[0].location : existingVideo.video;
     existingVideo.thumbnail = thumbnailFile[0] ? `/${thumbnailFile[0].path}` : existingVideo.thumbnail;
     existingVideo.updatedAt = Date.now()
 
